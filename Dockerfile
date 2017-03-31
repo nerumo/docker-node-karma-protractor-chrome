@@ -1,17 +1,12 @@
-FROM node:6.10
+FROM markadams/chromium-xvfb
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" \
-    apt-get install -y --no-install-recommends \
-    xvfb \
-    chromium \
-    libgconf-2-4 \
-    openjdk-7-jre-headless \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /usr/src/app
+ENV NODE_VERSION=6.10.1
 
-ENV DISPLAY :99
-ENV CHROME_BIN /usr/bin/chromium
-COPY entrypoint.sh /		
-RUN chmod a+x /entrypoint.sh		
-		
-ENTRYPOINT ["/entrypoint.sh"]
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+    && apt-get install -y nodejs=${NODE_VERSION}-1nodesource1~jessie1 \
+    && apt-get update \
+    && apt-get install -y git
+    && rm -rf /var/lib/apt/lists
+
+CMD npm test
