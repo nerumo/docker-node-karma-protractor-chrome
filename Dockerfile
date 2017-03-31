@@ -7,6 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
     DEBIAN_FRONTEND="noninteractive" \
     apt-get install -y --no-install-recommends \
     nodejs \
+    git \
     xvfb \
     chromium \
     libgconf-2-4 \
