@@ -17,8 +17,4 @@ RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
 
 ENV DISPLAY :99
 ENV CHROME_BIN /usr/bin/chromium
-
-COPY entrypoint.sh /
-RUN chmod a+x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "node" ]
