@@ -1,12 +1,16 @@
 FROM markadams/chromium-xvfb
 
 WORKDIR /usr/src/app
-ENV NODE_VERSION=6.10.1
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-    && apt-get install -y nodejs=${NODE_VERSION}-1nodesource1~jessie1 \
-    && apt-get update \
-    && apt-get install -y git \
-    && rm -rf /var/lib/apt/lists
-RUN apt-get update && apt-get install -y curl xvfb chromium
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    DEBIAN_FRONTEND="noninteractive" \
+    apt-get install -y --no-install-recommends \
+    nodejs \
+    yarn \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
 CMD npm test
