@@ -1,4 +1,4 @@
-FROM markadams/chromium-xvfb
+FROM yukinying/chrome-headless
 
 WORKDIR /usr/src/app
 
