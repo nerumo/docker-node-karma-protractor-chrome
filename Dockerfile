@@ -1,7 +1,7 @@
 FROM yukinying/chrome-headless
 
 WORKDIR /usr/src/app
-
+ENV CHROME_BIN=/chrome/headless_shell
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
