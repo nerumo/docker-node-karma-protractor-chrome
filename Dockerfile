@@ -40,7 +40,6 @@ RUN echo "===> clean up..."  && \
     rm -rf /var/lib/apt/lists/*
 
 
-
 # install cordova
 RUN npm i -g cordova@7.0.1
 RUN npm i -g npm@5.0.3
