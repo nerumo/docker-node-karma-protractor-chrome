@@ -41,7 +41,7 @@ RUN echo "===> clean up..."  && \
 
 
 # install cordova
-RUN npm i -g cordova@7.0.1
+RUN npm i -g cordova@6.5.0
 # RUN npm i -g npm@5.0.3
 
 RUN curl http://dl.google.com/android/android-sdk_r24.2-linux.tgz | tar xz -C /usr/local/
