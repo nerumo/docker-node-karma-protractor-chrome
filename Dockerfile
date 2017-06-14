@@ -56,8 +56,8 @@ RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /usr/local/android-sd
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 RUN mkdir -p /src/gradle
-RUN curl -o /tmp/gradle.zip https://services.gradle.org/distributions/gradle-3.5-bin.zip 
-RUN unzip /tmp/gradle.zip -d /src/gradle/
+RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip 
+RUN unzip /tmp/gradle-3.5-bin.zip  -d /src/gradle/
 
 ENV GRADLE_USER_HOME /src/gradle
 
