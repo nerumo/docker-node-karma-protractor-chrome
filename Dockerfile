@@ -60,6 +60,9 @@ RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip
 RUN unzip /tmp/gradle-3.5-bin.zip  -d /src/gradle/
 ENV PATH="/src/gradle/gradle-3.5/bin:${PATH}"
 
+RUN mkdir /usr/local/android-sdk-linux/licenses
+RUN echo "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
+
 ENV GRADLE_USER_HOME /src/gradle/gradle-3.5
 
 CMD npm test
