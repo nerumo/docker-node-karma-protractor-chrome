@@ -14,6 +14,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     nodejs \
     yarn \
+    expect \
     unzip \
     git \
     lib32stdc++6 lib32z1 && \
@@ -49,7 +50,7 @@ ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # update and accept licences
-RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /usr/local/android-sdk-linux/tools/android update sdk --no-ui -a --filter platform-tool,build-tools-23.0.1,android-24
+RUN (sleep 10 && while [ 1 ]; do sleep 2; echo y; done) |  android - update sdk --no-ui --filter platform-tool,build-tools-23.0.1,android-24
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
