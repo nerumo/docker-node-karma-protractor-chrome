@@ -40,7 +40,6 @@ RUN echo "===> clean up..."  && \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
-
 # install cordova
 RUN npm i -g cordova@6.5.0
 # RUN npm i -g npm@5.0.3
@@ -58,8 +57,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN mkdir -p /src/gradle
 RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip 
 RUN unzip /tmp/gradle-3.5-bin.zip  -d /src/gradle/
-RUN export PATH=$PATH:/src/gradle/bin
+ENV PATH="/src/gradle/gradle-3.5/bin:${PATH}"
 
-ENV GRADLE_USER_HOME /src/gradle
+ENV GRADLE_USER_HOME /src/gradle/gradle-3.5
 
 CMD npm test
