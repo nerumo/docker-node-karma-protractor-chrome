@@ -58,6 +58,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN mkdir -p /src/gradle
 RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip 
 RUN unzip /tmp/gradle-3.5-bin.zip  -d /src/gradle/
+RUN export PATH=$PATH:/src/gradle/bin
 
 ENV GRADLE_USER_HOME /src/gradle
 
