@@ -17,10 +17,9 @@ RUN apt-get update && \
     expect \
     unzip \
     git \
-    python3-pip \
+    python \
     lib32stdc++6 lib32z1 && \
-    rm -rf /var/lib/apt/lists/* \
-    echo "alias python='python3'" >> /root/.bashrc 
+    rm -rf /var/lib/apt/lists/*
 
 RUN \
     echo "===> add webupd8 repository..."  && \
@@ -55,7 +54,7 @@ RUN (sleep 10 && while [ 1 ]; do sleep 2; echo y; done) |  android - update sdk 
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-ENV PYTHON /usr/bin/python3
+ENV PYTHON /usr/bin/python
 
 RUN mkdir -p /src/gradle
 RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip 
