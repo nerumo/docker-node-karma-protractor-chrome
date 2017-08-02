@@ -17,6 +17,7 @@ RUN apt-get update && \
     expect \
     unzip \
     git \
+    python3-pip \
     lib32stdc++6 lib32z1 && \
     rm -rf /var/lib/apt/lists/*
 
