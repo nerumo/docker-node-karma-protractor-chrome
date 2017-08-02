@@ -55,6 +55,7 @@ RUN (sleep 10 && while [ 1 ]; do sleep 2; echo y; done) |  android - update sdk 
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV PYTHON /usr/bin/python3
 
 RUN mkdir -p /src/gradle
 RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip 
