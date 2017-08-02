@@ -19,8 +19,8 @@ RUN apt-get update && \
     git \
     python3-pip \
     lib32stdc++6 lib32z1 && \
-    rm -rf /var/lib/apt/lists/*
-
+    rm -rf /var/lib/apt/lists/* \
+    echo "alias python='python3'" >> /root/.bashrc 
 
 RUN \
     echo "===> add webupd8 repository..."  && \
