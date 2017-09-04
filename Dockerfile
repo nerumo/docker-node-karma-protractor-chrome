@@ -13,7 +13,6 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
     nodejs \
-    yarn \
     expect \
     unzip \
     git \
@@ -41,9 +40,7 @@ RUN echo "===> clean up..."  && \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
-# install cordova
-RUN npm i -g cordova@6.5.0
-# RUN npm i -g npm@5.2.0
+RUN npm i -g cordova@6.5.0 yarn@0.28.4
 
 RUN curl http://dl.google.com/android/android-sdk_r24.2-linux.tgz | tar xz -C /usr/local/
 ENV ANDROID_HOME /usr/local/android-sdk-linux
