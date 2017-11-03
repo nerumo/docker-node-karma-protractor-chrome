@@ -40,7 +40,7 @@ RUN echo "===> clean up..."  && \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
-RUN npm i -g cordova@7.1.0 yarn@1.2.1
+RUN npm i -g cordova@6.5.0 yarn@1.2.1
 
 RUN curl http://dl.google.com/android/android-sdk_r24.2-linux.tgz | tar xz -C /usr/local/
 ENV ANDROID_HOME /usr/local/android-sdk-linux
@@ -54,14 +54,14 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PYTHON /usr/bin/python
 
 RUN mkdir -p /src/gradle
-RUN wget -P /tmp https://services.gradle.org/distributions/gradle-4.0-bin.zip 
-RUN unzip /tmp/gradle-4.0-bin.zip  -d /src/gradle/
-ENV PATH="/src/gradle/gradle-4.0/bin:${PATH}"
+RUN wget -P /tmp https://services.gradle.org/distributions/gradle-3.5-bin.zip 
+RUN unzip /tmp/gradle-3.5-bin.zip  -d /src/gradle/
+ENV PATH="/src/gradle/gradle-3.5/bin:${PATH}"
 
 RUN mkdir /usr/local/android-sdk-linux/licenses
 RUN echo "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
 RUN echo "\nd56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
 
-ENV GRADLE_USER_HOME /src/gradle/gradle-4.0
+ENV GRADLE_USER_HOME /src/gradle/gradle-3.5
 
 CMD npm test
