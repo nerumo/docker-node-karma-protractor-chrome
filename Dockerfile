@@ -1,32 +1,26 @@
-FROM yukinying/chrome-headless
+FROM node:8.2.1
+
+# Install Google Chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list  && \
+    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list  && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
 
 WORKDIR /usr/src/app
-ENV CHROME_BIN=/chrome/headless_shell
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install -y curl build-essential && \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && \
     apt-get install -y --no-install-recommends \
-    nodejs \
+    google-chrome-stable \
+    curl \
+    build-essential \
     expect \
     unzip \
     git \
     python \
-    lib32stdc++6 lib32z1 && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN \
-    echo "===> add webupd8 repository..."  && \
-    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list  && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list  && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886  && \
-    apt-get update
-
+    lib32stdc++6 lib32z1
 
 RUN echo "===> install Java"  && \
     mkdir -p /usr/share/man/man1 && \
@@ -40,7 +34,7 @@ RUN echo "===> clean up..."  && \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/*
 
-RUN npm i -g cordova@6.5.0 yarn@1.2.1
+RUN npm i -g cordova@6.5.0
 
 RUN curl http://dl.google.com/android/android-sdk_r24.2-linux.tgz | tar xz -C /usr/local/
 ENV ANDROID_HOME /usr/local/android-sdk-linux
